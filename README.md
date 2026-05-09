@@ -91,6 +91,8 @@ This repo is the new code from this weekend. Jarvis core (the runtime, the Teleg
 
 Sunday morning: sign up for Dripify and wire the connection-event webhook in `handlers/dripify_webhook.py`. After that, build the screenshot-ingestion mechanism so I can grow the style library by forwarding posts to Telegram. Schedule the topic radar cron once the news API budget settles. The LinkedIn auto-poster stays gated behind manual approval until I've earned the trust to flip the switch.
 
+Full feature list and priority ordering in [ROADMAP.md](./ROADMAP.md). 11 skills total: 7 shipped this weekend, 1 shipped (input side) with output side planned, and 3 fully planned.
+
 ---
 
 License: MIT. See [LICENSE](./LICENSE).
