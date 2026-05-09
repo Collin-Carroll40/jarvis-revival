@@ -61,6 +61,12 @@ Telegram is the human approval layer. Cron-scheduled skills run inside Jarvis (C
 
 The LinkedIn relationship layer runs through Dripify. The campaign sequence below is the production flow Caseread uses for solo-and-small-firm attorney outreach. Jarvis hooks into the connection-accepted, message-replied, and follow-up-due events and writes them to the memory vault, where the EOD digest cron synthesizes the day into a single Telegram digest.
 
+### Why a third-party SaaS for the actual LinkedIn actions
+
+LinkedIn aggressively flags accounts that look automation-heavy. Direct API automation, headless browser scripts on a VPS, and most homegrown approaches get the account restricted or banned. Dripify exists specifically as a protection layer — they run the connection requests, follows, and messages through their own residential-proxy infrastructure with the rate-limiting and behavioral patterns that keep accounts in good standing.
+
+So I deliberately drew the line: Dripify owns the LinkedIn-touching surface. Jarvis owns content generation, event handling, and the EOD digest. Trying to build the LinkedIn dance into Jarvis directly would have put my actual LinkedIn account at risk. The webhook integration in [`handlers/dripify_webhook.py`](./handlers/dripify_webhook.py) is the bridge between the two.
+
 ![Dripify campaign sequence](./handlers/dripify-sequence.jpg)
 
 The flow:
