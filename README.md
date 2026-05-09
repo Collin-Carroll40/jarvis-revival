@@ -6,6 +6,12 @@
 
 <p align="center"><em>My personal assistant. Automates the daily tasks that have to get done so I can spend my time on the work that doesn't yet.</em></p>
 
+<p align="center">
+  <img alt="Built for AI Builder Day 2026" src="https://img.shields.io/badge/AI%20Builder%20Day-2026-2b6cb0?style=flat-square">
+  <img alt="Powered by Claude" src="https://img.shields.io/badge/Powered%20by-Claude%20Sonnet%204.6-d97706?style=flat-square">
+  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square">
+</p>
+
 ---
 
 ## What this is
@@ -50,7 +56,9 @@ Telegram is the primary control plane. Mission Control is the secondary one — 
 
 The Health tab below shows live data: 30-day weight trend, 14-day calorie bar chart against the 2,000-cal target, 14-day protein chart against the 150g target. Every food entry logged via `/food` lands here. Every reading from `/weight` lands here. The morning digest cron pulls from this same database.
 
-![Mission Control — Health tab](./dashboards/mission-control-health.jpg)
+<p align="center">
+  <img src="./dashboards/mission-control-health.jpg" alt="Mission Control — Health tab" width="380">
+</p>
 
 Mission Control is part of Jarvis core (pre-existing). Weekend skills write to the same vault and database it reads from, so anything new the LinkedIn / intel / regression skills generate shows up next to the older food and weight data without extra wiring.
 
@@ -73,15 +81,15 @@ This repo extends a runtime I've been running for months. None of the following 
 | Connection follow-up triage | 1.5 hrs | 0.25 hrs | 1.25 hrs |
 | Competitive intel scanning | 3.0 hrs | 0.25 hrs | 2.75 hrs |
 | Content reflection / planning | 1.0 hrs | 0.25 hrs | 0.75 hrs |
-| **Total** | **~10 hrs** | **~1.25 hrs** | **~8.75 hrs** |
+| Codebase ground-truth audit | 1.0 hrs | 0.0 hrs (auto Sat 12 PM) | 1.0 hrs |
+| Sentry error triage | 0.5 hrs | 0.0 hrs (auto Sat 12 PM) | 0.5 hrs |
+| **Total** | **~11.5 hrs** | **~1.25 hrs** | **~10.25 hrs** |
 
 Roughly 10 hours back per week.
 
 ## Architecture
 
 Telegram is the human approval layer. Cron-scheduled skills run inside Jarvis (Claude Code), pull from the memory vault, generate output, and ship it to me on Telegram for review. Webhooks (Dripify, future LinkedIn) flow back the same way. Full diagram and trust model in [ARCHITECTURE.md](./ARCHITECTURE.md).
-
-(Note: the architecture diagram lives in `ARCHITECTURE.md` as ASCII. I didn't generate a PNG for the demo folder; the ASCII version is the source of truth.)
 
 ## Dripify integration
 
@@ -93,7 +101,9 @@ LinkedIn aggressively flags accounts that look automation-heavy. Direct API auto
 
 So I deliberately drew the line: Dripify owns the LinkedIn-touching surface. Jarvis owns content generation, event handling, and the EOD digest. Trying to build the LinkedIn dance into Jarvis directly would have put my actual LinkedIn account at risk. The webhook integration in [`handlers/dripify_webhook.py`](./handlers/dripify_webhook.py) is the bridge between the two.
 
-![Dripify campaign sequence](./handlers/dripify-sequence.jpg)
+<p align="center">
+  <img src="./handlers/dripify-sequence.jpg" alt="Dripify campaign sequence" width="700">
+</p>
 
 The flow:
 - Send invite. Branch on Accepted / Still not accepted.
@@ -118,12 +128,6 @@ The webhook handler that consumes these events lives in [`handlers/dripify_webho
 ## Repo notes
 
 This repo is the new code from this weekend. Jarvis core (the runtime, the Telegram bot, the memory vault, the skill loader) lives separately as personal infrastructure and is not committed here. Treat this repo as a hackathon-build extension, not the whole stack.
-
-## What's next
-
-Sunday morning: sign up for Dripify and wire the connection-event webhook in `handlers/dripify_webhook.py`. After that, build the screenshot-ingestion mechanism so I can grow the style library by forwarding posts to Telegram. Schedule the topic radar cron once the news API budget settles. The LinkedIn auto-poster stays gated behind manual approval until I've earned the trust to flip the switch.
-
-Full feature list and priority ordering in [ROADMAP.md](./ROADMAP.md). 11 skills total: 7 shipped this weekend, 1 shipped (input side) with output side planned, and 3 fully planned.
 
 ---
 
