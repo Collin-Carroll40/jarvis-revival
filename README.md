@@ -112,8 +112,9 @@ Each of these is one Markdown file plus one cron line. Build time: 1–3 hours e
 - **Direct LinkedIn auto-post** — once LinkedIn's OAuth scope is granted, Jarvis publishes the M/W/F drafts directly with a 60-second Telegram veto window. **~0.75 hrs/wk saved.** Replaces the current review-and-paste loop with review-and-tap.
 - **Oura ring biometric integration** — pulls daily HRV, sleep score, recovery, and resting heart rate from Oura's API and folds it into the morning brief. Upgrades the burnout-monitor from a food-and-weight heuristic to a real physiological signal. **~0.5 hrs/wk and a sharper signal** — the kind of thing a senior advisor would tell me to look at, automated.
 - **Multi-inbox monitoring + draft replies** — `collin@trylawless.com`, `collin@thewebmasonry.com`, plus personal Gmail. Jarvis triages by importance, drafts replies for the high-priority ones, sends to Telegram for one-tap approval. **~3 hrs/wk saved.** This is the highest-leverage item on the list because email is where every founder's day disappears.
+- **Banking + budgeting (personal + business)** — pulls transactions from personal accounts and the Caseread.ai LLC accounts via Plaid, auto-categorizes, surfaces spending patterns weekly, catches forgotten subscriptions and duplicate charges, separates personal vs business so quarterly tax prep stops being a Sunday-afternoon archeology dig. Adds a burn-rate monitor for the business side that pings me on Telegram if the runway math changes. **~2.5 hrs/wk saved**, plus the actual dollars caught from anomaly detection.
 
-Projected total once these ship: **~21 hrs per week saved**. That's twenty-six 40-hour workweeks per year — half of a full-time hire's annual capacity.
+Projected total once these ship: **~23.5 hrs per week saved**. That's roughly thirty 40-hour workweeks per year — three quarters of a full-time hire's annual capacity, running on a single VPS.
 
 ## Mission Control — the secondary dashboard
 
