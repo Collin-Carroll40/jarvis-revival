@@ -1,12 +1,28 @@
-> "AI killed cold email. So I revived Jarvis to automate the marketing channels that still work."
+<p align="center">
+  <img src="./jarvis-logo.png" alt="Jarvis" width="220">
+</p>
+
+<h1 align="center">Jarvis</h1>
+
+<p align="center"><em>My personal assistant. Automates the daily tasks that have to get done so I can spend my time on the work that doesn't yet.</em></p>
+
+---
 
 ## What this is
 
 A weekend build for AI Builder Day's "Give Yourself a Promotion" hackathon (May 2026).
 
-Jarvis is the persistent Claude Code agent I run on a VPS. It already handled my daily life (calendar, todos, journaling, briefings). This weekend I extended it into a marketing operations layer for Caseread.ai, my AI legal research product.
+Jarvis is the persistent Claude Code agent I've been running on a DigitalOcean VPS since February. It's been my chief of staff for months: morning digest at 7:35 AM with calendar + priorities + weight, daily brief at 9:05 AM with market intel and action items, weekly growth research, nighttime ideas, food and weight tracking, vault knowledge capture, code regression scans. The picture below is a real Saturday morning conversation — not a demo, just three back-to-back Jarvis messages I read on my phone before coffee.
 
-The promotion I gave myself: I fired the version of me that was hand-drafting LinkedIn posts at 11pm and chasing competitive intel by browser tab. Jarvis does that work now. I review, edit, ship.
+<p align="center">
+  <img src="./dashboards/jarvis-telegram-morning.jpg" alt="A real Saturday morning with Jarvis on Telegram" width="380">
+</p>
+
+This weekend I extended Jarvis into a marketing operations layer for Caseread.ai, my AI legal research product. Same architecture, new skills. The same Jarvis that wakes me up with a digest and tracks my deficit days now also drafts my LinkedIn posts, runs Friday content reflections, pulls Sunday-evening competitive intel, monitors Sentry, and audits the codebase for regressions.
+
+The promotion I gave myself: I fired the version of me that was hand-drafting LinkedIn posts at 11pm and chasing competitive intel by browser tab. Jarvis does that work now. I review, edit, ship. ~10 hours back per week.
+
+> "AI killed cold email. So I revived Jarvis to automate the marketing channels that still work."
 
 ## The story
 
