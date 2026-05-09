@@ -80,6 +80,41 @@ Jarvis runs on Claude Code, which is structurally different:
 
 That's where this stops being an LLM in a chat window and starts being an executive assistant. The "Give Yourself a Promotion" hackathon theme stops being a metaphor at that point. Hiring this executive assistant *was* my promotion.
 
+## Adding a new skill takes one minute
+
+This is the line nobody talks about. Most automation tools — n8n, Zapier, Make — make you assemble logic out of nodes in a visual editor. A workflow that does "fetch X, parse Y, send Z" is twelve clicks and an afternoon of debugging when one of the nodes silently fails.
+
+Adding a Jarvis skill is one Markdown file. The pattern is literally:
+
+```bash
+# 1. Drop a new skill — plain English, no DSL, no nodes
+$EDITOR ~/.claude/commands/my-new-skill.md
+
+# 2. Add a cron line
+crontab -e
+# 0 9 * * 1 ... claude -p "Run /my-new-skill" --allowedTools "..."
+```
+
+That's the whole loop. Hot-reloaded. No deploy. No build step. The skill file is plain English describing the steps, the tools the agent can use, and where output goes. Jarvis interprets the rest because the agent is an LLM, not a regex parser pretending to be a workflow engine.
+
+Two real moments from this week:
+
+- **Friday 11pm:** "ship a Sentry monitor + a code-regression skill, both running Saturday at noon." Loop: write two Markdown files, add two cron lines, smoke test. **25 minutes** from "can we do this?" to "it runs every Saturday." Wiring the same thing in n8n — Sentry connector → parse → format → Telegram → schedule — would have been an entire afternoon, plus the time spent debugging JSON-path expressions when an event field arrives in a different shape than the visual editor assumed.
+- **Saturday 7am:** "weekly content reflection cron, Friday 4pm." Loop: one Markdown file, one cron line. **8 minutes**.
+
+That speed is the actual unlock. The hackathon judges should read this section as the answer to "could a non-technical person actually use this?" Yes — because writing a Jarvis skill is closer to writing a memo than writing code. Jarvis is an AI assistant that makes adding new things *easy*, not just possible.
+
+## What's coming next (skill backlog)
+
+Each of these is one Markdown file plus one cron line. Build time: 1–3 hours each. Cumulative additional time saved when shipped: **~7 more hours per week**, on top of the 14.25 already saved.
+
+- **Auto-newsletter to Caseread.ai users** — Jarvis drafts the weekly newsletter from the week's vault entries (decisions, beta feedback, market intel), sends to the subscriber list via the existing Gmail OAuth or a Resend integration. **~3 hrs/wk saved.** The hardest part is the user-list integration; the writing is already a solved problem the way `linkedin-post` is.
+- **Direct LinkedIn auto-post** — once LinkedIn's OAuth scope is granted, Jarvis publishes the M/W/F drafts directly with a 60-second Telegram veto window. **~0.75 hrs/wk saved.** Replaces the current review-and-paste loop with review-and-tap.
+- **Oura ring biometric integration** — pulls daily HRV, sleep score, recovery, and resting heart rate from Oura's API and folds it into the morning brief. Upgrades the burnout-monitor from a food-and-weight heuristic to a real physiological signal. **~0.5 hrs/wk and a sharper signal** — the kind of thing a senior advisor would tell me to look at, automated.
+- **Multi-inbox monitoring + draft replies** — `collin@trylawless.com`, `collin@thewebmasonry.com`, plus personal Gmail. Jarvis triages by importance, drafts replies for the high-priority ones, sends to Telegram for one-tap approval. **~3 hrs/wk saved.** This is the highest-leverage item on the list because email is where every founder's day disappears.
+
+Projected total once these ship: **~21 hrs per week saved**. That's twenty-six 40-hour workweeks per year — half of a full-time hire's annual capacity.
+
 ## Mission Control — the secondary dashboard
 
 Telegram is the primary control plane. Mission Control is the secondary one — a self-hosted Bun + React dashboard (Tailscale-only) that visualizes the data Jarvis writes and reads. Health, tasks, calendar, messages, outreach metrics, all in one place, populated from the same source of truth that the cron jobs pull from.
