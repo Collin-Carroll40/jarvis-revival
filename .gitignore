@@ -1,0 +1,24 @@
+# Secrets and env
+.env
+.env.*
+!.env.example
+secrets/
+
+# Vault (lives separately as personal infra; never committed here)
+vault/
+
+# Python
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Logs
+logs/
+*.log
+
+# Node (in case any frontend tooling is added later)
+node_modules/
+
+# OS
+.DS_Store
