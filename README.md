@@ -57,6 +57,20 @@ Telegram is the human approval layer. Cron-scheduled skills run inside Jarvis (C
 
 (Note: the architecture diagram lives in `ARCHITECTURE.md` as ASCII. I didn't generate a PNG for the demo folder; the ASCII version is the source of truth.)
 
+## Dripify integration
+
+The LinkedIn relationship layer runs through Dripify. The campaign sequence below is the production flow Caseread uses for solo-and-small-firm attorney outreach. Jarvis hooks into the connection-accepted, message-replied, and follow-up-due events and writes them to the memory vault, where the EOD digest cron synthesizes the day into a single Telegram digest.
+
+![Dripify campaign sequence](./handlers/dripify-sequence.jpg)
+
+The flow:
+- Send invite. Branch on Accepted / Still not accepted.
+- Accepted path: 1-hour delay, then a 4-message cascade (1 hr / 2 days / 5 days / no-delay branch on viewed-message).
+- Not-accepted path: 14-day wait, view profile, 19-day wait, withdraw invite, follow, second invite attempt at 15 days.
+- Email-fallback branch when LinkedIn fails: find email, 3 send-email steps with 7-day and 14-day spacing.
+
+The webhook handler that consumes these events lives in [`handlers/dripify_webhook.py`](./handlers/dripify_webhook.py). Currently stubbed — fills in Sunday morning once the Dripify account is provisioned.
+
 ## Stack
 
 - Claude Sonnet 4.6 (drafting + reasoning) and Claude Haiku 4.5 (cheap synthesis tasks)
