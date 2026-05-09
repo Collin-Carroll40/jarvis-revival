@@ -28,6 +28,16 @@ The channels that still work for legal-tech founders are LinkedIn content and hu
 - Journal-append hook on `Stop`. Auto-appends decisions and actions from the conversation to today's daily journal.
 - Dehumidifier ruleset, extracted out of `linkedin-post` into a reusable skill. Em-dash zero-tolerance, banned-vocabulary list (delve, leverage, transformative, robust, seamless, unlock, game-changer, revolutionize), no duplicate closers across variants, sentence-fragment injection.
 
+## Mission Control — the secondary dashboard
+
+Telegram is the primary control plane. Mission Control is the secondary one — a self-hosted Bun + React dashboard (Tailscale-only) that visualizes the data Jarvis writes and reads. Health, tasks, calendar, messages, outreach metrics, all in one place, populated from the same source of truth that the cron jobs pull from.
+
+The Health tab below shows live data: 30-day weight trend, 14-day calorie bar chart against the 2,000-cal target, 14-day protein chart against the 150g target. Every food entry logged via `/food` lands here. Every reading from `/weight` lands here. The morning digest cron pulls from this same database.
+
+![Mission Control — Health tab](./dashboards/mission-control-health.jpg)
+
+Mission Control is part of Jarvis core (pre-existing). Weekend skills write to the same vault and database it reads from, so anything new the LinkedIn / intel / regression skills generate shows up next to the older food and weight data without extra wiring.
+
 ## Pre-existing (Jarvis core, running since Feb 2026)
 
 This repo extends a runtime I've been running for months. None of the following was built this weekend:
