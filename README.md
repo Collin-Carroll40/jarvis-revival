@@ -113,15 +113,21 @@ This repo extends a runtime I've been running for months. None of the following 
 | Content reflection / planning | 1.0 hrs | 0.25 hrs | 0.75 hrs |
 | Codebase ground-truth audit | 1.0 hrs | 0.0 hrs (auto Sat 12 PM) | 1.0 hrs |
 | Sentry error triage | 0.5 hrs | 0.0 hrs (auto Sat 12 PM) | 0.5 hrs |
-| **Total** | **~11.5 hrs** | **~1.25 hrs** | **~10.25 hrs** |
+| Ad-hoc agent dispatch (bug fixes, code edits, research scans) | 2.5 hrs | 0.5 hrs (review only) | 2.0 hrs |
+| Health logging (food/weight via Telegram, voice memos transcribed + processed) | 1.0 hrs | 0.0 hrs | 1.0 hrs |
+| Daily journal + decision capture (auto-append hook) | 0.5 hrs | 0.0 hrs | 0.5 hrs |
+| Vault knowledge lookup (auto pre-loaded into every prompt) | 0.5 hrs | 0.0 hrs | 0.5 hrs |
+| **Total** | **~16 hrs** | **~1.75 hrs** | **~14.25 hrs** |
 
 ### Why this number actually matters
 
-10 hours a week is **520 hours a year** — thirteen 40-hour workweeks. That's the headline.
+14 hours a week is **728 hours a year** — eighteen 40-hour workweeks. That's the headline.
 
-What it really means: I no longer draft LinkedIn posts at 11pm. I no longer spend Sunday morning catching up on legal-AI news through 30 browser tabs. I no longer burn an hour every Friday trying to remember what I posted that week. The cognitive switching tax — flipping out of "founder building product" mode into "marketer drafting content" mode 12 times a week — is gone. Jarvis owns those shifts. I review on my phone in the elevator and ship.
+What it really means: I no longer draft LinkedIn posts at 11pm. I no longer spend Sunday morning catching up on legal-AI news through 30 browser tabs. I no longer burn an hour every Friday trying to remember what I posted that week. I don't open a calorie tracker — I tell Jarvis "I had two protein bars and a Cubby's Philly" and the database is up to date. I don't journal manually — the journal-append hook captures decisions and action items as they happen. I don't dig through old vault notes — the vault-search hook pre-loads them into Jarvis's context before I finish typing the question.
 
-For a solo founder, the 10 hours isn't the win. The win is having those 10 hours fall in coherent, focused, unbroken blocks. That's what makes the difference between shipping product and shipping content. With Jarvis I get to ship both.
+The cognitive switching tax — flipping out of "founder building product" mode into "marketer drafting content" mode 12 times a week — is gone. Jarvis owns those shifts. I review on my phone in the elevator and ship.
+
+For a solo founder, the 14 hours isn't the win. The win is having those 14 hours fall in coherent, focused, unbroken blocks. That's what makes the difference between shipping product and shipping content. With Jarvis I get to ship both.
 
 ## Architecture
 
