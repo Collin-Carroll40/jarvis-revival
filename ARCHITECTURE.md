@@ -27,20 +27,21 @@
 |   content-     |        |  +---------+---------+  |        +------------------+
 |   reflection   |        |            |            |
 |                |        |  +---------v---------+  |        +------------------+
-|  Sun 8PM       |        |  |  Memory vault     |  |        |  External APIs   |
-|   competitive- |        |  |  ~/vault/         |  |        |                  |
-|   intel        |        |  |  (Obsidian / git) |  |        |  - Anthropic     |
+|  Sat 12PM      |        |  |  Memory vault     |  |        |  External APIs   |
+|   sentry-      |        |  |  ~/vault/         |  |        |                  |
+|   monitor      |        |  |  (Obsidian / git) |  |        |  - Anthropic     |
 |                |        |  +-------------------+  |        |  - WebSearch     |
-|  Every 1m      |        |                         |        |  - Gmail OAuth   |
-|   mcp-watchdog |        |  +-------------------+  |        |  - LinkedIn      |
-|                |        |  |  Hooks            |  |        |    (planned)     |
-|                |        |  |  - UserPrompt     |  |        |                  |
-+----------------+        |  |    Submit (vault  |  |        +--------+---------+
-                          |  |    pre-search)    |  |                 ^
-                          |  |  - Stop (journal  |  |                 |
-                          |  |    append)        |  |                 |
-                          |  +-------------------+  |                 |
-                          |                         +-----------------+
+|  Sat 12PM      |        |                         |        |  - Gmail OAuth   |
+|   code-        |        |  +-------------------+  |        |  - Sentry        |
+|   regression   |        |  |  Hooks            |  |        |  - LinkedIn      |
+|                |        |  |  - UserPrompt     |  |        |    (planned)     |
+|  Sun 8PM       |        |  |    Submit (vault  |  |        |                  |
+|   competitive- |        |  |    pre-search)    |  |        +--------+---------+
+|   intel        |        |  |  - Stop (journal  |  |                 ^
+|                |        |  |    append)        |  |                 |
+|  Every 1m      |        |  +-------------------+  |                 |
+|   mcp-watchdog |        |                         |                 |
++----------------+        |                         +-----------------+
                           |  +-------------------+  |    outbound: drafts,
                           |  |  Dehumidifier     |  |    intel, reports
                           |  |  (text rewrite)   |  |
