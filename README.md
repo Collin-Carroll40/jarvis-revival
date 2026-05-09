@@ -67,6 +67,19 @@ Everything else clusters around that one process:
 
 A technical judge can read this section as the architectural answer to "what makes this more than a chatbot wrapper." It's a real always-on system with backpressure handling, durability, and self-healing — built incrementally over three months and extended this weekend.
 
+## Why Claude Code specifically
+
+Most "AI assistants" are wrappers around a chat API. They can talk about code. They can't see it. They can suggest fixes. They can't apply them. For a technical founder, that gap is the entire difference between a toy and a real assistant.
+
+Jarvis runs on Claude Code, which is structurally different:
+
+- **It can read my code.** Caseread.ai's repo is on the same VPS. The `code-regression` skill walks routes, migrations, package versions, and recent commits every Saturday. It sees what shipped, what broke, what got renamed, what's stale — because the agent has filesystem access, not just an OpenAPI spec.
+- **It can change my code.** When I found a false-positive in the outreach pipeline's quality-check layer at 11pm last week, I described it on Telegram. A subagent forked, read the file, identified the regex bug, refactored it, ran the smoke tests, committed, pushed. I approved the diff before the push. The whole loop took 7 minutes.
+- **It catches things I'd miss.** The May 1 cron-vs-MCP bug class (where cron-spawned subprocesses kept killing the persistent telegram poller) was diagnosed by a Jarvis investigator agent that crawled the session JSONL, traced the orphaned-PID pattern, and reported back with the exact root cause. I would have burned half a day chasing that one manually.
+- **It takes the wheel when I ask.** Telegram message before bed: *"Build the cron, push to GitHub, the hackathon's tomorrow."* I went to sleep. I woke up to a working repo with three commits, a smoke-tested cron, and a Telegram summary. Real subprocess execution, real filesystem, real git operations, real autonomy. Not a chatbot. An operator.
+
+That's where this stops being an LLM in a chat window and starts being an executive assistant. The "Give Yourself a Promotion" hackathon theme stops being a metaphor at that point. Hiring this executive assistant *was* my promotion.
+
 ## Mission Control — the secondary dashboard
 
 Telegram is the primary control plane. Mission Control is the secondary one — a self-hosted Bun + React dashboard (Tailscale-only) that visualizes the data Jarvis writes and reads. Health, tasks, calendar, messages, outreach metrics, all in one place, populated from the same source of truth that the cron jobs pull from.
